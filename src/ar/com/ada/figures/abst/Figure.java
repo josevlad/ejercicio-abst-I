@@ -1,4 +1,4 @@
-package ar.com.ada.abstracts.abst;
+package ar.com.ada.figures.abst;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
-package ar.com.ada.abstracts.subclass;
+package ar.com.ada.figures.subclass;
 
-import ar.com.ada.abstracts.abst.Figure;
+import ar.com.ada.figures.abst.Figure;
 
 import java.util.Objects;
 

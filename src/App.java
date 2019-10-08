@@ -1,7 +1,5 @@
-import ar.com.ada.abstracts.abst.Figure;
-import ar.com.ada.abstracts.subclass.Circle;
-import ar.com.ada.abstracts.subclass.Rectangle;
-import ar.com.ada.abstracts.subclass.Triangle;
+import ar.com.ada.figures.Actions;
+import ar.com.ada.figures.abst.Figure;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,6 +7,22 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
+         /**
+          * En esta solucion vamos a separar cada proceso de los casos del
+          * switch en metodos estaticos de una clase nueva llamada MenuActions
+          * que se crea en el package ar.com.ada.figures
+          *
+          * En esta forma de solucion, se usa el tema que vimos de pasar objetos por referencia
+          * a un metodo, en este caso a los metodos staticos de la clase Actions (Acciones), los objetos
+          * que se le pasan por referencia son el ArrayList figures y el objeto Scanner keyboard,
+          * para que se pueda agregar los objetos a esa lista (que es una referencia en la memoria heap)
+          * y mostar los mensajen de guia al usuario en pantalla
+          *
+          * Con esta forma, podemos fracmentar la solucion en pequeños fracmentos de codigo que se
+          * puede leer y cambiar facilmente.
+          *
+          */
+
 
         ArrayList<Figure> figures = new ArrayList<Figure>();
         Scanner keyboard = new Scanner(System.in);
@@ -23,39 +37,15 @@ public class App {
             choice = keyboard.nextInt();
             switch (choice) {
                 case 1:
-                    //instancia con constructor vacio
-                    Rectangle rec = new Rectangle();
-                    // pido y capturo los datos
-                    System.out.println("Ingrese la base del rectangulo:");
-                    Double widthR = keyboard.nextDouble();
-                    System.out.println("Ingrese la altura del rectangulo:");
-                    Double heigthR = keyboard.nextDouble();
-                    // seteo los attr del objeto con los setters
-                    rec.setWidth(widthR);
-                    rec.setHeigth(heigthR);
-                    // agrego a la lista
-                    figures.add(rec);
+                    Actions.makeRectangle(figures, keyboard);
                     i++;
                     break;
                 case 2:
-                    // pido y capturo el dato
-                    System.out.println("Ingrese el radio del circulo");
-                    Double r = keyboard.nextDouble();
-                    // instancio la clase con el contructor con parametro
-                    Circle c = new Circle(r);
-                    // agrego el objeto a la lista
-                    figures.add(c);
+                    Actions.makeCircle(figures, keyboard);
                     i++;
                     break;
                 case 3:
-                    // pido y capturo los datos
-                    System.out.println("Ingrese la altura del triangulo:");
-                    Double heigthT = keyboard.nextDouble();
-                    System.out.println("Ingrese la base del triangulo:");
-                    Double widthT = keyboard.nextDouble();
-                    // instancio la clase con el constructor con paranetros
-                    Triangle t = new Triangle(heigthT, widthT);
-                    figures.add(t);
+                    Actions.makeTriangle(figures, keyboard);
                     i++;
                     break;
                 default:
@@ -64,35 +54,17 @@ public class App {
 
         } while (i < 3);
 
-        for (int j = 0; j < figures.size(); j++) {
-            Figure figure = figures.get(j);
+        /**
+         * Se invoca el metodo que se encarga de mostar por pantalla el resultado de la
+         * solucion del problema propuesto
+         */
+        Actions.printAreasOnScreen(figures);
 
-            // el (j + 1) es para sumar 1 a j y que parezca en pantalla en numero entndible
-            // por el ususario, ejemplo j = 0 en pantalla aparece 1
-            // y tiene que ser entre parentesis para que haga la suma
-            // si no lo tiene, hace es una concatenacion de string, ejemplo
-            // " + i + 1 + " en pantalla aparece 01, 11, 21
-            System.out.println("El area de la figura " + (j + 1) + " es:" + figure.calculateArea());
-            System.out.println("Y la figura es: " + figure.toString());
-            System.out.println();
-        }
-
-        boolean hasEquals = false;
-
-        for (int j = 0; j < figures.size(); j++) {
-            // Se elije un elemento de la lista y lo guardo en assess (evaluar)
-            Figure assess = figures.get(j);
-
-            for (int k = 0; k < figures.size(); k++) {
-                // Recorro la lista y guardo cada elemento en compare
-                Figure compare = figures.get(k);
-
-                // pregunto si assess es igual a compare y si j es distinto de k
-                // el j distinto de k, hago que no compare el mismo elemnto de la lista consigo mismo
-                if (assess.equals(compare) && j != k)
-                    hasEquals = true;
-            }
-        }
+        /**
+         * Se invoca el metodo que indica si existe objetos iguales en la lista
+         * ese retornará true si existe, en caso contrario falso.
+         */
+        boolean hasEquals = Actions.hasEquals(figures);
 
         if (hasEquals) {
             System.out.println("Y existen objetos iguales");
