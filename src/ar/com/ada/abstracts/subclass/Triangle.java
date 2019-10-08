@@ -34,7 +34,8 @@ public class Triangle extends Figure {
 
     @Override
     public Double calculateArea() {
-        return (this.heigth * this.width) / 2;
+        this.area = (this.heigth * this.width) / 2;
+        return this.area;
     }
 
     @Override
@@ -43,7 +44,8 @@ public class Triangle extends Figure {
         if (o == null || getClass() != o.getClass()) return false;
         Triangle that = (Triangle) o;
         return width.equals(that.width) &&
-                heigth.equals(that.heigth);
+                heigth.equals(that.heigth) &&
+                super.equals(that);
     }
 
     @Override

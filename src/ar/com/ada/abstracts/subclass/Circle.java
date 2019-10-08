@@ -24,7 +24,8 @@ public class Circle extends Figure {
 
     @Override
     public Double calculateArea() {
-        return Math.PI * Math.pow(this.radio, 2);
+        this.area = Math.PI * Math.pow(this.radio, 2);
+        return this.area;
     }
 
     @Override
@@ -32,7 +33,8 @@ public class Circle extends Figure {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Circle that = (Circle) o;
-        return radio.equals(that.radio);
+        return radio.equals(that.radio) &&
+                super.equals(that);
     }
 
     @Override

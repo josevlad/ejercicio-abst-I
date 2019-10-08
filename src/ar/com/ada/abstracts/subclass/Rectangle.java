@@ -45,7 +45,8 @@ public class Rectangle extends Figure {
         if (!super.equals(o)) return false;
         Rectangle that = (Rectangle) o;
         return width.equals(that.width) &&
-                heigth.equals(that.heigth);
+                heigth.equals(that.heigth) &&
+                super.equals(that);
     }
 
     @Override
