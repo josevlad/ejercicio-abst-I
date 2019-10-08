@@ -67,7 +67,7 @@ public class App {
          * Se invoca el metodo que indica si existe objetos iguales en la lista
          * ese retornará true si existe, en caso contrario falso.
          */
-        boolean hasEquals = Actions.hasEquals(figures);
+        boolean hasEquals = Actions.hasFiguresEquals(figures);
 
         if (hasEquals) {
             System.out.println("Y existen objetos iguales");

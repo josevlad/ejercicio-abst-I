@@ -124,7 +124,7 @@ public class Actions {
      * @param figures
      * @return
      */
-    public static Boolean hasEquals(ArrayList<Figure> figures) {
+    public static Boolean hasFiguresEquals(ArrayList<Figure> figures) {
         boolean hasEquals = false;
         for (int j = 0; j < figures.size(); j++) {
             // Se elije un elemento de la lista y lo guardo en assess (evaluar)
