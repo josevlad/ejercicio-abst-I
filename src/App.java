@@ -37,14 +37,17 @@ public class App {
             choice = keyboard.nextInt();
             switch (choice) {
                 case 1:
+                    // se invoca el metodo estatico para crear un objeto rectangulo y añadirlo a la lista
                     Actions.makeRectangle(figures, keyboard);
                     i++;
                     break;
                 case 2:
+                    // se invoca el metodo estatico para crear un objeto cirdulo y añadirlo a la lista
                     Actions.makeCircle(figures, keyboard);
                     i++;
                     break;
                 case 3:
+                    // se invoca el metodo estatico para crear un objeto triangulo y añadirlo a la lista
                     Actions.makeTriangle(figures, keyboard);
                     i++;
                     break;
